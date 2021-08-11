@@ -1,0 +1,49 @@
+button.signupButton:hover {
+    background-color: rgb(29, 28, 22);
+    color : white;
+}
+
+nav.login_navbar {
+    height : 100px;
+    border-bottom: 5px solid black;
+}
+
+div.bodyContent {
+    height: 200px;
+    margin-top : 150px; 
+    margin-left : 600px;
+    border-radius: 10px;
+    height : 600px; 
+    width : 650px;
+    border: 1px solid black;
+    box-shadow: 2px 4px;
+}
+
+div.bodyContent div.formBody {
+    width : 400px;
+    margin-left : 150px;
+    margin-top : 50px;
+}
+
+
+div.bodyContent button.submitButton {
+    border : 2px solid black;
+    background-color: white;
+    color : black;
+    
+}
+
+div.bodyContent button.submitButton:hover {
+    background-color: black;
+    color : white; 
+}
+
+div.bodyContent div.formBody form input.form-control:focus {
+    box-shadow: inset 0 1px 1px black, 0 0 8px black;   
+    background-color: white;
+}
+
+div.bodyContent img.LoginLogo {
+    margin-left : 180px;
+    margin-top: 50px;
+}

@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_reg.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+
+    {% comment %}  
+        Mould History Card. 
+    {% endcomment %}
+
+
+    <p class="h2" style="text-align:center;"> 
+        {{ mould_data.mould_name }} History Card.
+    </p> 
+    <hr /> 
+
+
+    {% if G_CLEAN %}
+        <div>
+            <p class="h3"> 
+                General Cleaning History.
+            </p>
+
+            <table class="table"> 
+
+                <thead> 
+                    <th class="col"> 
+                            Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date of applied 
+                    </th> 
+
+                    <th class="col"> 
+                        Date cleaning completed.
+                    </th> 
+
+                </thead> 
+
+                <tbody> 
+
+                {% for entry in GEN_CLEAN_DATA %}
+
+                    <tr class="bg-info"> 
+
+                        <td> 
+                            {{ entry.mould_id }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.date_applied_for_cleaning }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.date_get_back_from_cleaning }}
+                        </td>
+                    </tr> 
+                {% endfor %}
+
+
+
+                </tbody> 
+
+            </table> 
+        </div> 
+    <hr /> 
+    {% endif %} 
+
+
+
+    {% if P_MAIN %}
+
+
+
+            <div>
+            <p class="h3"> 
+                Preventive Maintaince History.
+            </p>
+
+            <table class="table"> 
+
+                <thead> 
+                    <th class="col"> 
+                            Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date of applied 
+                    </th> 
+
+                    <th class="col"> 
+                        Maintaince completed.
+                    </th> 
+
+
+
+                </thead> 
+
+                <tbody> 
+
+                {% for entry in P_MAIN_DATA %}
+
+                    <tr class="bg-info"> 
+
+                        <td> 
+                            {{ entry.mould_id }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.date_applied_for_maitaince }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.date_of_get_back_from_cleaning }}
+                        </td>
+                    </tr> 
+                {% endfor %}
+
+
+
+                </tbody> 
+
+            </table> 
+        </div> 
+
+
+
+
+
+    <hr /> 
+
+    {% endif %}
+
+    {% if DAMAGE %}
+
+
+
+            <div>
+            <p class="h3"> 
+                Mould Damage History.
+            </p>
+
+            <table class="table"> 
+
+                <thead> 
+                    <th class="col"> 
+                            Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date of applied 
+                    </th> 
+
+                    <th class="col"> 
+                        Mould Damage repaired on.
+                    </th> 
+
+                    <th class="col"> 
+                        Type of Damage
+                    </th> 
+
+                </thead> 
+
+                <tbody> 
+
+                {% for entry in DAMAGE_DATA %}
+
+                    <tr class="bg-info"> 
+
+                        <td> 
+                            {{ entry.mould_id }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.damage_occurued_on }}
+                        </td> 
+
+                        <td> 
+                            {{ entry.damage_recovered_on }}
+                        </td>
+
+                        <td> 
+                            {{ entry.damage_name }}
+                        </td>
+                    </tr> 
+                {% endfor %}
+
+
+
+                </tbody> 
+
+            </table> 
+        </div> 
+
+
+    {% endif %}
+
+    
+{% endblock %}
+

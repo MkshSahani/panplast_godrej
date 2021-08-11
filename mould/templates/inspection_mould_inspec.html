@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_id.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+
+    {% if SAVED %}
+      
+       <div class="alert alert-success" role="alert">
+          MOULD : {{ mould_id_value }} data has updated in DataBase. 
+       </div>
+   
+    {% endif %}
+    {% comment %} 
+        Inspection Mould Register. 
+    {% endcomment %}
+    <div class="container" style="margin-top : -20px;"> 
+        <legend style="font-size : 20px;text-align:center;"> 
+           <b>Daily Mould Check List (Loaded Mould) </b>
+        </legend> 
+        <form method="POST" action="{% url 'MouldInspect' %}"> 
+            {% csrf_token %}
+
+
+            <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputEmail1" 
+                class="form-label">
+                <b>
+                Machine ID 
+                </b>
+            </label>
+            
+            <input 
+            type="number" 
+            name = "machineNumber"
+            class="form-control" 
+            id="mouldName" 
+            aria-describedby="textHelp"
+            required >
+        
+        </div>
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputEmail1" 
+                class="form-label">
+                <b>
+                Mould Number 
+                </b>
+            </label>
+            
+            
+            <select 
+                class="form-select" 
+                id="inputGroupSelect01"
+                name="mouldNumber">
+                <option selected value="-1">Select</option>
+                {% for id in mould_id %}
+                <option value="{{ id }}">{{ id }}</option>
+                {% endfor  %}                
+            </select>
+        
+        </div>
+
+       
+
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Cleaning the core, cavity, mating surface and potting line
+                </b>
+            </label>
+            
+            
+             <input class="form-check-input"  name="inspect_clause_1" type="checkbox" value="1" id="flexCheckDefault">
+
+
+        </div> 
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Ejector system speed and oil test 
+                </b>
+            </label>
+            
+            
+            <input class="form-check-input"  name="inspect_clause_2" type="checkbox" value="1" id="flexCheckDefault">
+
+
+        </div> 
+
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Feed system (runner, gate, sapru, bush) 
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_3" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+
+         <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Side core movement and oil or grease check  
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_4" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Water pouring into the mold
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_5" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Checking of Grease in Guide Bush, Pillar and Slider 
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_6" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Checking for Scratch in the Core or Cavity 
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_7" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+         <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Nozzle hole size
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_8" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Size of spool bush
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_9" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Mold mounting bolts and clamps
+                </b>
+            </label>
+            
+            <input class="form-check-input"  name="inspect_clause_10" type="checkbox" value="1" id="flexCheckDefault">
+
+        </div> 
+
+        <button type="submit" class="btn btn-primary submitButton" style="width : 680px;"><b>Register</b></button>
+        
+
+
+
+        </form> 
+
+    </div> 
+    
+    
+{% endblock %}
+
+ 

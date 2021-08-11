@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_reg.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    
+
+    <div class="container"> 
+
+            {% if NOT_DATA %}
+
+                <p class="h2"> 
+                    You have not filled forms required.
+                </p> 
+            {% else %}
+
+                {% if ACCEPTED %}
+
+                    <p class="h2"> 
+                        
+                        {{ mould_data.mould_name }} is registered for 
+                        Preventive on {{ mould_data.date_applied_for_cleaning.date }}, 
+                        go back to you you
+                    </p> <a href="/" > dashboard,</a> 
+
+                {% elif ALREDY_IN_SERVICE %}
+                    <p>     
+                        {{ mould_data.mould_name }} is already in Preventive.
+                    </p> <a href="/" > dashboard,</a>
+                {% endif %}
+
+            {% endif %}
+
+    </div> 
+{% endblock %}
+

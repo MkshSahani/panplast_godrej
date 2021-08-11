@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/dashboard.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+
+
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    {% comment %} 
+        Put ppm Data Here.
+    {% endcomment %}
+
+   
+        <p class="h2" style="text-align : center;"> 
+            Mould Inspection Data
+        </p> 
+        <hr /> 
+
+        <table class="table"> 
+
+            <thead> 
+
+                <th class="col"> 
+                    Machine ID 
+                </th> 
+
+                <th class="col"> 
+                    Mould ID
+                </th>
+
+                <th class="col"> 
+                    Date
+                </th>
+
+                <th class="col"> 
+                    Cleaning the core, cavity, mating surface and potting line
+                </th>
+
+                <th class="col">
+                    Ejector system speed and oil test  
+                </th>
+
+                <th class="col"> 
+                    Feed system (runner, gate, sapru, bush)
+                </th>
+
+                <th class="col"> 
+                    Side core movement and oil or grease check
+                </th>
+
+                <th class="col"> 
+                    Water pouring into the mold
+                </th>
+
+
+                <th class="col"> 
+                    Checking of Grease in Guide Bush, Pillar and Slider
+                </th>
+
+                <th class="col"> 
+                    Checking for Scratch in the Core or Cavity
+                </th>
+
+                <th class="col"> 
+                    Nozzle hole size 
+                </th>
+
+                
+                <th class="col"> 
+                    Size of spool bush
+                </th>
+
+                
+                <th class="col"> 
+                   Mold mounting bolts and clamps 
+                </th>
+
+            </thead> 
+            <tbody> 
+
+                {% for data in mould_check_data %}
+                    <tr class="bg-info"> 
+                        <td> 
+                           {{ data.machine_id }}
+                        </td>
+                        
+                        <td> 
+                           {{ data.mould_id }}
+                        </td> 
+
+                        <td> 
+                           {{ data.date_time_of_update.date }}
+                        </td> 
+
+                        
+
+
+                        {% comment %} clause_1 {% endcomment %}
+                        <td style="text-align : center;"> 
+                            {% if data.clause_1 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        {% comment %} clause_2 {% endcomment %}
+                        <td style="text-align : center;"> 
+                            {% if data.clause_2 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_3 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_4 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_5 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_6 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_7%}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_8%}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_9 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+
+                        <td style="text-align : center;"> 
+                            {% if data.clause_10 %}
+                                <i class="bi bi-check">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                </svg>
+                                </i>
+                            {% else %}
+                                
+                                <i class="bi bi-x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </i>
+                            {% endif %}
+                        </td>
+
+                    </tr> 
+                {% endfor %}
+
+            </tbody> 
+
+        </table> 
+ 
+{% endblock %}
+

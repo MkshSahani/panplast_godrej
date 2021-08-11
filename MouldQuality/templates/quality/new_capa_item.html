@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/dashboard.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+
+
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+
+    {% if REG %}
+
+        <div class="alert alert-success" role="alert">
+          Iteam Has been Registered in CAPA DataBase. 
+       </div>
+
+    {% endif %}
+
+
+    <div class="container">
+        <p class="h2"> 
+            Add New CAPA Item
+        </p>    
+        <hr /> 
+    </div> 
+
+
+
+    <div class="container" style="margin-top : 100px;"> 
+
+        <form action="{% url 'NewIteam' %}" autocomplete="off" method="POST" style="width : 800px;margin-left : 250px;"> 
+        {% csrf_token %}
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    Iteam Code
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "icode"
+                class="form-control" 
+                id="vendorName" 
+                required >
+
+            </div>
+
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    Iteam Name 
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "iname"
+                class="form-control" 
+                id="iname" 
+                required >
+        
+            </div>
+
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    Rejection Reason
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "reason"
+                class="form-control" 
+                id="vendorName" 
+                
+                required
+                >
+        
+            </div>
+
+         
+        <button type="submit" class="btn btn-primary" style="width :800px;"><b>Register CAPA Iteam</b></button>
+
+        </form> 
+
+
+    </div> 
+ 
+{% endblock %}
+

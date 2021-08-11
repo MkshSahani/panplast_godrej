@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_reg.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    
+    {% if mouldRegistered %}
+      
+       <div class="alert alert-success" role="alert">
+          {{ mouldName }} Mould has been, Registered you can add some more register. 
+       </div>
+   
+    {% endif %}
+
+    <div class="container"> 
+   
+        <form method="POST" action="." autocomplete="off"> 
+        {% csrf_token %}
+        <legend>
+            <p class="h2" style="padding-left : 150px;">  
+            Mould Registration
+            </p>  
+        </legend> 
+
+         <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputEmail1" 
+                class="form-label">
+                <b>
+                Mould Name 
+                </b>
+            </label>
+            
+            <input 
+            type="text" 
+            name = "mouldName"
+            class="form-control" 
+            id="mouldName" 
+            aria-describedby="textHelp"
+            required >
+        
+        </div>
+
+
+      
+
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputEmail1" 
+                class="form-label">
+                <b>
+                Mould Number 
+                </b>
+            </label>
+            
+            <input 
+            type="number" 
+            name = "mouldNumber"
+            class="form-control" 
+            id="mouldNumber" 
+            aria-describedby="mouldNumberHelp"
+            required >
+        
+        </div>
+
+         <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleCavityNumber" 
+                class="form-label">
+                <b>
+                Cavity Number
+                </b>
+            </label>
+            
+            <input 
+            type="number" 
+            name = "cavityNumber"
+            class="form-control" 
+            id="cavityNumber" 
+            aria-describedby="cavityNumber"
+            required >
+        </div> 
+        
+
+       <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleThresholdValue" 
+                class="form-label">
+                <b>
+                Threshold Value 
+                </b>
+            </label>
+            
+            <input 
+            type="number" 
+            name = "thresholdValue"
+            class="form-control" 
+            id="thresholdValue" 
+            aria-describedby="thresholdValue"
+            required >
+        </div> 
+
+        <div 
+            class="mb-3 submitButton">
+
+            <button type="submit" class="btn btn-primary submitButton customSubmitButton"><b>Register</b></button>
+
+        </div> 
+
+
+        </div>
+
+
+        </form> 
+
+
+    </div> 
+    
+{% endblock %}
+

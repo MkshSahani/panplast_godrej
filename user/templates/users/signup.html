@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+      PanPlast | Signup
+    </title>  
+    <link 
+        rel="stylesheet" 
+        href="{% static 'css/signup.css' %}"> 
+{% endblock %}
+
+{% block body_content %}
+
+<nav 
+    class="navbar navbar-light login_navbar">
+  <div class="container-fluid">
+    
+    <img 
+    src="{% static 'images/new.png' %}" />
+    
+  </div>
+</nav>
+
+
+{% if userExist %}
+    <div class="alert alert-danger" role="alert">
+        Some other user using same Email address, place user othe Email.
+    </div>
+{% endif %}
+
+
+<div 
+  class="bodyContent"> 
+  <img 
+    class="LoginLogo" 
+    src="{% static 'images/new.png' %}" />
+    
+    <div 
+        class="formBody"> 
+    {% comment %} Login Form {% endcomment %}
+      
+    <form 
+        autocomplete="off"
+        method="POST" 
+        action="."
+        >
+
+    {% csrf_token %}
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputEmail1" 
+                class="form-label">
+                <b>
+                Email address
+                </b>
+            </label>
+            
+            <input 
+            type="email" 
+            name = "userEmail"
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp"
+            rquired >
+        
+        </div>
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleInputPassword1" 
+                class="form-label">
+                <b>
+                    Password
+                </b>
+            </label>
+            
+            <input 
+                type="password"
+                name="userPassword" 
+                class="form-control" 
+                id="exampleInputPassword1"
+                required >
+        </div>
+
+        <div 
+            class="mb-3">
+            
+            <label 
+                for="exampleFirstName" 
+                class="form-label">
+                <b>
+                First Name
+                </b>
+            </label>
+            
+            <input 
+                type="text" 
+                name="userFirstName"
+                class="form-control" 
+                id="userFirstName" 
+                aria-describedby="textHelp"
+                required 
+                >
+        </div>
+
+        <div 
+        class="mb-3"> 
+            <label 
+                for="exampleLastName" 
+                class="form-label">
+                <b>
+                    Last Name
+                </b>
+            </label>
+            
+            <input 
+                type="text" 
+                name="userLastName"
+                class="form-control" 
+                id="userLastName" 
+                aria-describedby="textHelp"
+                required>
+        </div> 
+
+        <div 
+            class="mb-3"> 
+            <label 
+                for="exampleAddress" 
+                class="form-label">
+                <b>
+                    Address
+                </b>
+            </label>
+            
+            <input 
+                type="text" 
+                name="userAddress"
+                class="form-control" 
+                id="userAddress" 
+                aria-describedby="textHelp"
+                required >
+        </div> 
+
+
+        <div 
+            class="mb-3"> 
+            
+            <label 
+                for="phoneNumber" 
+                class="form-label">
+                <b>
+                    Phone
+                </b>
+            </label>
+            
+            <input 
+                type="tel" 
+                name="userTelNumber"
+                class="form-control" 
+                id="userTel" 
+                aria-describedby="telHelp"
+                required 
+                >
+        </div> 
+
+        <div 
+            class="input-group mb-3">
+            
+            <label 
+                class="input-group-text" 
+                for="inputGroupSelect01">
+                Role
+            </label>
+            
+            <select 
+                class="form-select" 
+                id="inputGroupSelect01"
+                name="userLevel">
+                
+                <option selected value="-1">Select</option>
+                <option value="0">Worker</option>
+                <option value="1">Supervisor</option>
+                <option value="2">Manager</option>
+                <option value="3">Plant Manager</option>
+            </select>
+        </div>
+
+        
+            <button type="submit" class="btn btn-primary submitButton customSubmitButton"><b>Register</b></button>
+        
+    
+    </form>
+    </div> 
+</div> 
+
+{% endblock %}

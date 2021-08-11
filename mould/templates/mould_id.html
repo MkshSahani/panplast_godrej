@@ -1,0 +1,490 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_id.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+
+    {% if BACK_G_CLEAN %}
+         <div class="alert alert-success" role="alert">
+          Mould Alert : Mould is Back from General Cleanning. 
+       </div>
+    {% endif %}
+
+    {% if BACK_P_CLEAN %}
+         <div class="alert alert-success" role="alert">
+          Mould Alert : Mould is Back from Preventive Maintaince. 
+       </div>
+    {% endif %}
+
+
+
+    {% if BACK_FROM_DAMAGE %}
+         <div class="alert alert-success" role="alert">
+          Mould Alert : Mould Damage has been repaired and Registered. 
+       </div>
+    {% endif %}
+
+
+
+    {% if DAMAGE %}
+         <div class="alert alert-danger" role="alert">
+          Mould Alert : Mould is Damaged with {{ damage.damage_name }} Type of Damage. 
+       </div>
+    {% endif %}
+
+
+    <div class="heading_container">
+        <div class="row"> 
+            <div class="col">
+               <p class="h2"> 
+                    Mould ID : {{ data.mould_id }}
+                </p>
+            </div> 
+
+            <div class="col"> 
+                <a href="/mould/update/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        update
+                    </button> 
+                </a> 
+                <a href="/mould/delete/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        delete
+                    </button> 
+                </a> 
+
+                <a href="/mould/gclean/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        General Cleaning
+                    </button> 
+                </a> 
+
+                <a href="/mould/pmaintain/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        Preventive Clearning
+                    </button> 
+                </a> 
+
+                <a href="/mould/damageAdd/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        Damage
+                    </button> 
+                </a> 
+
+                {% comment %} <a href="/mould/delete/{{ data.mould_id }}"> 
+                    <button class="btn bg-dark text-white mould_button"> 
+                        Damage
+                    </button> 
+                </a>  {% endcomment %}
+
+            </div> 
+        
+        </div> 
+
+    </div>  
+    <hr /> 
+
+
+    <div class="mould_data_show"> 
+        <div class="row">
+            <div class="col tableColumn">
+
+                <table class="table">
+                            {% comment %} {% comment %} <th scope="col">Mould ID</th> {% endcomment %}
+                            <th scope="col">Property</th>
+                            <th scope="col">Value</th>
+                            {% comment %} <th scope="col">time</th> {% endcomment %}
+                            {% comment %} <th scope="col">Part Description</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Product Line</th>
+                            <th scope="col">Registered by </th> 
+                       {% endcomment %}
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Mould ID 
+                        </td> 
+                        <td> 
+                            {{ data.mould_id }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Mould Name 
+                        </td> 
+                        <td> 
+                            {{ data.mould_name }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Order Number 
+                        </td> 
+                        <td> 
+                            {{ data.order_number }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Preventive Cleaning
+                        </td> 
+                        <td> 
+                            {{ data.preventive_maintaince_clearning_thresold_value }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                           Tool Life Count   
+                        </td> 
+                        <td> 
+                            {{ data.tool_life }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Registered by 
+                        </td> 
+                        <td> 
+                            {{ data.registered_by.first_name }}
+                        </td> 
+                    </tr> 
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Current Count 
+                        </td> 
+                        <td> 
+                            {{ data.present_count }}
+                        </td> 
+                    </tr>
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Target 
+                        </td> 
+                        <td> 
+                            {{ data.number_of_shots_per_day }} shots per day
+                        </td> 
+                    </tr>
+
+                    <tr class="bg-info"> 
+                        <td>
+                            General Clearning count  
+                        </td> 
+                        <td> 
+                            {{ data.general_maintaince_cleaning_threshold_value }}
+                        </td> 
+                    </tr>
+
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Mould Description   
+                        </td> 
+                        <td> 
+                            {{ data.moud_desc }}
+                        </td> 
+                    </tr>
+
+
+                    
+                    <tr class="bg-info"> 
+                        <td>
+                            Part Weight
+                        </td> 
+                        <td> 
+                            {{ data.part_weight }}
+                        </td> 
+                    </tr>
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Runner Weight
+                        </td> 
+                        <td> 
+                            {{ data.runner_weight }}
+                        </td> 
+                    </tr>
+
+
+
+                    <tr class="bg-info"> 
+                        <td>
+                            Tonnage
+                        </td> 
+                        <td> 
+                            {{ data.tonnage }}
+                        </td> 
+                    </tr>
+
+                    <tr class="bg-info"> 
+                        <td>
+                            cycle time
+                        </td> 
+                        <td> 
+                            {{ data.cycle_time }}
+                        </td> 
+                    </tr>
+
+
+
+
+
+                </table> 
+
+            </div> 
+
+            <div class="col graphColumn"> 
+                <img src="{% static 'images/mould_daily_count.png' %}" class="img-fluid" alt="...">
+            </div> 
+        </div> 
+    </div> 
+      
+   {% comment %} Comments. {% endcomment %}
+    
+    <hr /> 
+    {% if IN_CLEAN %}
+        <div class="container"> 
+            <table class="table"> 
+                <thread> 
+                    <th class="col"> 
+                        Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date
+                    </th> 
+
+                    <th class="col"> 
+                        Order ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Get Back from Cleaning
+                    </th> 
+                <thead> 
+
+                <tbody> 
+                    <tr class="bg-info"> 
+                        <td>
+                            {{ mould_g_clean_data.mould_id.mould_id }}
+                        </td>
+
+                        <td>
+                            {{ mould_g_clean_data.date_applied_for_cleaning.date }}
+                        </td>
+
+                        <td>
+                            {{ mould_g_clean_data.mould_id.order_number }}
+                        </td>
+
+                        <td>
+                            <a href="/mould/getBackGclean/{{ mould_g_clean_data.mould_id }}">
+                                General Cleaning completed.
+                            </a> 
+                        </td>
+                        
+
+                    </tr> 
+
+
+                </tbody> 
+            </table> 
+        </div> 
+
+    {% endif %}
+
+
+
+    {% if IN_MAIN %}
+        <div class="container"> 
+            <table class="table"> 
+                <thread> 
+                    <th class="col"> 
+                        Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date
+                    </th> 
+
+                    <th class="col"> 
+                        Order ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Get Back from Cleaning
+                    </th> 
+                <thead> 
+
+                <tbody> 
+                    <tr class="bg-info"> 
+                        <td>
+                            {{ mould_p_main.mould_id.mould_id }}
+                        </td>
+
+                        <td>
+                            {{ mould_p_main.date_applied_for_maitaince }}
+                        </td>
+
+                        <td>
+                            {{ mould_p_main.mould_id.order_number }}
+                        </td>
+
+                        <td>
+                            <a href="/mould/getBackMain/{{ mould_p_main.mould_id }}">
+                                preventive maintaince complete
+                            </a> 
+                        </td>
+                        
+
+                    </tr> 
+
+
+                </tbody> 
+            </table> 
+        </div> 
+
+    {% endif %}
+
+
+
+       {% if DAMAGE %}
+        <div class="container"> 
+            <table class="table"> 
+                <thread> 
+                    <th class="col"> 
+                        Mould ID 
+                    </th> 
+
+                    <th class="col"> 
+                        Date
+                    </th> 
+
+                    <th class="col"> 
+                        Damage type
+                    </th> 
+
+                    <th class="col"> 
+                        Get Back from Cleaning
+                    </th> 
+                <thead> 
+
+                <tbody> 
+                    <tr class="bg-info"> 
+                        <td>
+                            {{ damage.mould_id }}
+                        </td>
+
+                        <td>
+                            {{ damage.damage_occurued_on }}
+                        </td>
+
+                        <td>
+                            {{ damage.damage_name }}
+                        </td>
+
+                        <td>
+                            <a href="/mould/damageRepair/{{ damage.mould_id }}">
+                                Damage Has been repaired.
+                            </a> 
+                        </td>
+                        
+
+                    </tr> 
+
+
+                </tbody> 
+            </table> 
+        </div> 
+
+    {% endif %}
+
+
+    <div class="container"> 
+    
+        <form action="." method = "POST"> 
+            {% csrf_token %}
+            <input type="number" name="id" style="display:none" value="{{ data.mould_id }}" /> 
+              <label 
+                for="exampleInputEmail1" 
+                class="form-label"
+                style="font-size : 20px;"
+                >
+                <b>
+                Comment 
+                </b>
+            </label>
+            
+            <textarea 
+            name = "comment"
+            class="form-control" 
+            id="mouldName" 
+            aria-describedby="textHelp"
+            required >
+
+            </textarea> 
+
+            <div 
+            class="mb-3 submitButton">
+
+            <button type="submit" class="btn btn-primary submitButton customSubmitButton"><b>submit</b></button>
+
+        </div> 
+
+
+        </form> 
+
+        <div class="comment_box_2">
+            {% for comment in comments %}
+            <div class="alert alert-info" role="alert">
+                {{ comment.comment_text }}
+                <br/> 
+                <i><u> {{ comment.commented_by.first_name }} </u></i>
+                <p style="text-align:right;"> 
+                    {{ comment.commented_date_time }}
+                </p> 
+            </div>
+            {% endfor %}
+
+        </div> 
+
+    </div> 
+
+    
+
+{% endblock %}
+

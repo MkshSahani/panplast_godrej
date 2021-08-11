@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_id.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+
+    {% comment %}  
+        Mould Inspection choice selection. 
+    {% endcomment %}
+
+    <div class="container" style="padding-top : 200px;"> 
+
+        <div class="row"> 
+
+            <div class="col">
+                <a href="{% url 'MouldUnLoad' %}" style="text-decoration:none;"> 
+                <button class="btn" style="height : 100px; width : 200px;background-color : black;color : white;"> 
+                     Register Mould
+                </button> 
+                </a> 
+            </div> 
+
+            <div class="col"> 
+
+                <a href="{% url 'MouldInspect' %}" style="text-decoration:none;"> 
+                <button class="btn" style="height : 100px; width : 200px;background-color : black;color : white;"> 
+                    Mould Daily Inspection
+                </button> 
+                </a> 
+            </div> 
+        </div> 
+
+    </div>    
+    
+{% endblock %}
+

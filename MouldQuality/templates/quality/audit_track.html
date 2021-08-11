@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/dashboard.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+
+
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    {% comment %} 
+        Put ppm Data Here.
+    {% endcomment %}
+
+    <div class="container"> 
+        <p class="h2" style="text-align:center;"> 
+            Audit Details
+        </p>
+        <hr /> 
+        {% if NO_DATA  %}
+            <p class="h3" style="color : gray;"> 
+                Not Audit Data Found.
+            </p> 
+        {% endif %}
+        <hr /> 
+    </div> 
+
+
+
+        {% if not NO_DATA %}
+
+            <table class="table"> 
+
+                <thead> 
+
+                    <th class="col"> 
+                        Serial Number 
+                    </th> 
+
+                    <th class="col"> 
+                        Supplier 
+                    </th> 
+
+                    <th class="col"> 
+                        Type
+                    </th> 
+
+                    <th class="col"> 
+                        No of use in tools
+                    </th> 
+
+                    <th class="col"> 
+                        No of Machine
+                    </th> 
+
+                    <th class="col"> 
+                        Godrej Auditor 
+                    </th> 
+
+                    <th class="col"> 
+                        Supplier Auditor 
+                    </th> 
+
+                    <th class="col"> 
+                        Score 
+                    </th> 
+
+                    <th class="col"> 
+                        Grades
+                    </th> 
+
+                </thead> 
+
+                <tbody> 
+
+                    {% for data in AUDIT_DATA %}
+
+                        <tr class="bg-info"> 
+
+                            <td> 
+                                {{   data.audit_id }}
+                            </td> 
+
+                            <td> 
+                                {{ data.supplier }}
+                            </td> 
+
+                            <td> 
+                                {{ data.audit_type }}
+                            </td> 
+
+                            <td> 
+                                {{ data.tools }}
+                            </td> 
+
+                            <td> 
+                                {{ data.no_of_machine }}
+                            </td> 
+
+                            <td> 
+                                {{ data.godrej_auitor }}
+                            </td> 
+
+                            <td> 
+                                {{ data.supplier_audito }}
+                            </td> 
+
+                            <td> 
+                                {{ data.score }}
+                            </td> 
+
+                            <td> 
+                                {{ data.grade }}
+                            </td> 
+
+                        </tr> 
+
+                    {% endfor %}
+
+                </tbody> 
+
+                
+
+            </table> 
+
+        {% endif %}
+
+        <hr />         
+     
+
+
+
+
+
+    <div class="container"> 
+
+        <form action="{% url 'Audit' %}" autocomplete="off" method="POST" style="width : 800px;margin-left : 250px;"> 
+        {% csrf_token %}
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    Supplier
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "supplier"
+                class="form-control" 
+                id="vendorName" 
+                required >
+
+            </div>
+
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    Type
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "type"
+                class="form-control" 
+                id="vendorName" 
+                required >
+        
+            </div>
+
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                    no. of in use / tool
+                    </b>
+                </label>
+                <input 
+                type="number" 
+                name = "tools"
+                class="form-control" 
+                id="vendorName" 
+                >
+        
+            </div>
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                     Number of Mc
+                    </b>
+                </label>
+                <input 
+                type="number" 
+                name = "numberOfMachine"
+                class="form-control" 
+                id="vendorName" 
+                >
+        
+            </div>
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                     Godrej Auditor
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "gAuditor"
+                class="form-control" 
+                id="vendorName" 
+                >
+        
+            </div>
+
+
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                     Auditor at supplier
+                    </b>
+                </label>
+                <input 
+                type="text" 
+                name = "sAuditor"
+                class="form-control" 
+                id="vendorName" 
+                 >
+        
+            </div>
+
+            
+            <div 
+                class="mb-3">
+                <label 
+                    for="exampleInputEmail1" 
+                    class="form-label">
+                    <b>
+                     Score 
+                    </b>
+                </label>
+                <input 
+                type="number" 
+                name = "score"
+                class="form-control" 
+                id="vendorName" 
+                 >
+        
+            </div>
+
+        <button type="submit" class="btn btn-primary" style="width :800px;"><b>Add Audit Record</b></button>
+
+        </form> 
+
+
+    </div> 
+ 
+{% endblock %}
+

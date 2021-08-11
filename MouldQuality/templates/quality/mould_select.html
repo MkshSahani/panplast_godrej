@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/mould_reg.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    
+    {% if mould_deleted %}
+        <div class="alert alert-primary" role="alert">
+            {{ mould_id_deleted }} has been deleted from database.
+        </div>
+    {% endif %}
+
+    <div class="container"> 
+   
+        <form method="POST" action="." autocomplete="off"> 
+        {% csrf_token %}
+        <legend>
+            <p class="h2" style="padding-left : 150px;">  
+            Select Mould to get Mould History.
+            </p>  
+        </legend> 
+
+       <div 
+            class="input-group mb-3">
+            
+            <label 
+                class="input-group-text" 
+                for="inputGroupSelect01">
+                Select Mould ID 
+            </label>
+            
+            <select 
+                class="form-select" 
+                id="inputGroupSelect01"
+                name="mould_id">
+                
+                <option selected value="-1">Select</option>
+                {% for id in mould_id %}
+                <option value="{{ id }}">{{ id }}</option>
+                {% endfor  %}                
+            </select>
+        </div> 
+
+      
+        <div 
+            class="mb-3 submitButton">
+
+            <button type="submit" class="btn btn-primary submitButton customSubmitButton"><b>Search</b></button>
+
+        </div> 
+
+
+        </div>
+
+
+        </form> 
+
+
+    </div> 
+    
+{% endblock %}
+

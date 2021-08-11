@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+      PanPlast | Login
+    </title>  
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
+{% endblock %}
+
+{% block body_content %}
+
+{% comment %} 
+
+  * NavBar for login page contains. 
+  * PanPlast logo on left most side  TODO : Home page redirection to panplast.  
+  * singup button or right most side. 
+
+
+{% endcomment %}
+
+
+<nav class="navbar navbar-light login_navbar">
+  <div class="container-fluid">
+    <img src="{% static 'images/new.png' %}" />
+    <a class="" href = "{% url 'userSignup' %}">
+      <button class="btn signupButton" type="submit" ><b>Sign up</b></button>
+    </a> 
+  
+  </div>
+
+</nav>
+
+{% comment %} 
+  alert user if credentials are Wrong. 
+{% endcomment %}
+{% if userCreditError %}
+  <div 
+    class="alert alert-danger" 
+    role="alert">
+    
+    You Have entered Wrong Credential.
+  
+  </div>
+{% endif %}
+
+
+<div class="bodyContent"> 
+  <img class="LoginLogo" src="{% static 'images/new.png' %}" />
+    <div class="formBody"> 
+    {% comment %} Login Form {% endcomment %}
+      
+      <form 
+        method = "POST" 
+        autocomplete="off" 
+        action="." >
+      
+      {% csrf_token %}
+        <div 
+          class="mb-3">
+          
+          <label 
+            for="exampleInputEmail1" 
+            class="form-label">
+              <b>
+                Email address
+              </b>
+          </label>
+          
+          <input 
+            type="email" 
+            name="userEmail" 
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp" 
+            required >
+        
+        </div>
+      
+        <div 
+          class="mb-3">
+    
+          <label 
+          for="exampleInputPassword1" 
+          class="form-label">
+            <b>
+              Password
+            </b>
+          </label>
+          
+          <input 
+            type="password" 
+            name="userPassword" 
+            class="form-control" 
+            id="exampleInputPassword1" 
+            required >
+        
+        </div>
+        
+        <a 
+          class="" 
+          href = "{% url 'userLogin' %}">
+        
+        <button 
+          type="submit" 
+          class="btn btn-primary submitButton">
+            <b>
+              Log in
+            </b>
+          </button>
+        </a> 
+    </form>
+  </div> 
+</div> 
+
+{% endblock %}

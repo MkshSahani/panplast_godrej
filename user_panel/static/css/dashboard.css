@@ -1,0 +1,57 @@
+body {
+    background-color: whitesmoke;
+}
+
+nav.dashboard_nav {
+    background-color: rgb(17, 15, 15);
+}
+
+nav.dashboard_nav div.dashboard_nav {
+    color : white; 
+}
+
+nav.dashboard_nav div.user_data p a {
+    color: white; 
+}
+
+div.optionBar {
+    background-color: rgb(6, 4, 32);
+}
+
+div.optionBar div.row div.col {
+    font-size: 20px;
+    border : 2px solid white;
+    border-radius: 5px;
+    text-align: center;
+    color:white;
+}
+
+div.optionBar div.row div.col:hover {
+    color : black;
+    background-color: white;
+}
+
+
+div.optionBar div.row div.col a {
+    text-decoration: none;
+}
+
+div.optionBar div.row div.col a:hover {
+    color: black;
+}
+
+
+div.MouldData {
+    margin-top : 50px;
+}
+
+div.MouldData div.row div.graphData {
+    border-left : 0.5px solid black;
+    margin-left : 50px;
+}
+
+div.MouldData div.row div.graphData img.graphMouldImg {
+    margin-left : 80px;
+    width: 700px;
+    border-radius: 20px;
+}

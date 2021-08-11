@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title> 
+        DashBoard | {{ user.first_name }}
+    </title> 
+    <link 
+        rel="stylesheet"
+        href="{% static 'css/dashboard.css' %}" > 
+{% endblock %}
+
+{% block body_content %}
+
+
+    <nav 
+        class="navbar navbar-light dashboard_nav">
+        <div class="container-fluid dashboard_nav">
+            <p class="h1 dashboard_title"> 
+                <a href="{% url 'homePage' %}" style="text-decoration:None;">
+                  DashBoard 
+                </a> 
+            </p> 
+
+
+            <div class="user_data"> 
+                <p class="h3"> 
+                    {{ request.user.first_name }}, 
+                    <a href="{% url 'userLogout' %}"> 
+                        Logout
+                    </a> 
+                </p> 
+            </div> 
+        </div>
+    </nav>
+    
+    <div class="optionBar"> 
+
+        <div class="row"> 
+
+            <div class="col"> 
+                <a href="{% url 'MouldRegistration' %}"> 
+                    Register Mould
+                </a> 
+            </div> 
+
+            <div class="col"> 
+                <a href="{% url 'MouldUpdate' %}"> 
+                Mould View
+                </a> 
+            </div> 
+
+             <div class="col"> 
+                <a href="{% url "MouldSearch" %}"> 
+                Mould Identification 
+                </a> 
+            </div>
+
+             <div class="col"> 
+                <a href="{% url 'Inspect' %}"> 
+                Mould Inspection 
+                </a> 
+            </div> 
+
+            <div class="col"> 
+                <a href="{% url 'MouldQuality' %}"> 
+                Quality Analysis
+                </a> 
+            </div> 
+
+        </div> 
+
+    </div> 
+
+    <hr/>
+    
+    <p class="h1 firstHeading" style="text-align : center;"> 
+            Mould Data Analysis
+    </p> 
+    
+    <div class="MouldData"> 
+       
+        <div class="row"> 
+
+            <div class="col"> 
+                {% comment %} Tables about data regarding Mould {% endcomment %}
+               <table class="table"> 
+                    <thead>
+                        <tr>
+                            <th scope="col">Mould ID</th>
+                            <th scope="col">Mould Name</th>
+                            <th scope="col">Cavity Number</th>
+                            <th scope="col">Shots</th>
+                            <th scope="col"> alert </th> 
+                        </tr>
+                    </thead>
+                    
+                    <tbody> 
+                        {% for mould in mould_data %}
+                            {% if mould.general_alert %}
+                                <tr  class="bg-danger"> 
+                                    <td> 
+                                        <a href="mould/{{ mould.mould_id }}"> 
+                                            {{ mould.mould_id }}
+                                        </a> 
+                                    </td> 
+
+
+                                    <td > 
+                                        {{ mould.mould_name }}
+                                    </td> 
+
+                                  
+
+                                    <td > 
+                                        {{ mould.cavity_number }}
+                                    </td> 
+
+                                    <td > 
+                                        {{ mould.present_count }}
+                                    </td> 
+
+                                    <td > 
+                                        {% if mould.tool_life_over_alert %}
+                                            Tool Life Over Alert
+                                        {% elif mould.preventive_maintance_alert %}
+                                            Prevetive Maitaince Alert 
+                                        {% else %}
+                                            General Clearning Alert
+                                        {% endif %}
+                                    </td> 
+                                </tr> 
+                            {% else %}
+
+                                <tr class="bg-info"> 
+                                    <td> 
+                                        <a href="mould/{{ mould.mould_id }}"> 
+                                            {{ mould.mould_id }}
+                                        </a> 
+                                    </td> 
+                                    <td> 
+                                        {{ mould.mould_name }}
+                                    </td> 
+
+                                    <td> 
+                                        {{ mould.cavity_number }}
+                                    </td> 
+
+                                    <td> 
+                                        {{ mould.present_count }}
+                                    </td> 
+
+                                    <td> 
+                                        -
+                                    </td> 
+                                </tr> 
+
+                            {% endif %}
+                        {% endfor %}
+
+                    </tbody> 
+                </table> 
+
+            </div> 
+
+            <div class="col graphData"> 
+                {% comment %} Graph Plot on based of previous data {% endcomment %}
+                <img src="{% static 'images/number_of_mould_vs_shots.png' %}" class="img-fluid graphMouldImg" alt="...">
+            </div> 
+        </div> 
+    </div> 
+{% endblock %}
+

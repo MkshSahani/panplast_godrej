@@ -1,0 +1,52 @@
+
+nav.dashboard_nav {
+    background-color: rgb(17, 15, 15);
+}
+
+nav.dashboard_nav div.dashboard_nav {
+    color : white; 
+}
+
+nav.dashboard_nav div.user_data p a {
+    color: white; 
+}
+
+div.container {
+    margin-top : 100px;
+    padding: 100px;
+    width: 900px;
+    height: 500px;
+}
+
+
+div.container form div button.customSubmitButton{
+   width : 700px;
+   color : black; 
+   background-color: white;
+   border : 2px solid black;
+   margin-top : 20px;
+}
+
+div.container form div button.customSubmitButton:hover {
+   color : white; 
+   background-color: black;
+   
+}
+
+div.mould_data_show {
+    margin-top : 50px;
+}
+
+div.mould_data_show div.row div.tableColumn {
+    margin-top: 50px;
+}
+
+div.mould_data_show div.graphColumn {
+    margin-left: 60px;
+    border-left: 0.5px solid black;
+}
+
+div.mould_data_show div.graphColumn img {
+    margin-left: 50px;
+    width : 650px;
+}
