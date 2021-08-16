@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['panplastxgodrej.herokuapp.com']
 LOGIN_REDIRECT_URL = ''
 LOGIN_URL = 'user/login/'
 # Application definition
