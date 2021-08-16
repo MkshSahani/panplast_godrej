@@ -67,7 +67,7 @@ ROOT_URLCONF = 'mold_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(CORE_DIR, "user_panel/templates"),os.path.join(CORE_DIR, "user/templates"),os.path.join(CORE_DIR, "mould/templates"),os.path.join(CORE_DIR, "MouldQuality/templates/quality")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
