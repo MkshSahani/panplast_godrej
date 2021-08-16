@@ -11,3 +11,4 @@ gunicorn
 whitenoise
 psycopg2==2.8.6
 pyping
+matplotlib
