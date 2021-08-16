@@ -1,1 +1,1 @@
-web: gunicorn core.wsgi --log-file=-
+web: gunicorn mold_management.wsgi --log-file=-
