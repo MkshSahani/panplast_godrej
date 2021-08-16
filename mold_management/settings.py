@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'mold_management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
-db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+db_from_env = dj_database_url.config(default=DATABASE_URL)
 DATABASES={'default':{}}
 DATABASES['default'].update(db_from_env)
 
