@@ -1,0 +1,21 @@
+{
+    "name": "panplast",
+    "mastertemplate": "dashboard",
+    "version": "1.0.1",
+    "description": "Code ",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MkshSahani/panplast_godrej"
+    },
+    "bugs": {
+        "url": "https://github.com/MkshSahani/panplast_godrej",
+        "email": "msco18333@gmail.com"
+    },
+    "author": "Mukesh Sahani",
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}
